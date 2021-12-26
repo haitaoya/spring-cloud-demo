@@ -1,0 +1,24 @@
+server:
+  port: 8000 #实例的端口
+eureka:
+  instance:
+    prefer-ip=adress: true # 是否显示主机IP
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+  client:
+    service-url:
+      defaultZone:
+        http://localhost:8761/eureka/
+    fetch-registry: true
+spring:
+  application:
+    name: demo-eureka-user #应用名称
+#  cloud: #使用ip地址从config server fetch配置
+#    config:
+#      profile: prod
+#      uri: demo-config-server/
+  cloud: #使用Eureka 拉取配置
+    config:
+      profile: prod
+      discovery:
+        enabled: true
+        serviceId: DEMO-CONFIG-SERVER

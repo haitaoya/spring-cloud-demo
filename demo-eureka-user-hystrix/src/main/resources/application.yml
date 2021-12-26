@@ -1,0 +1,13 @@
+server:
+  port: 8030 #实例的端口
+eureka:
+  instance:
+    prefer-ip=adress: true # 是否显示主机IP
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+  client:
+    service-url:
+      defaultZone:
+        http://localhost:8761/eureka/
+spring:
+  application:
+    name: demo-eureka-user-hystrix #应用名称
